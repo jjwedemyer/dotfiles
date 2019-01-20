@@ -3,7 +3,7 @@
 	clean = git media clean %f
 	smudge = git media smudge %f
 [user]
-	name = jjwedemyer
+	name = Jakob Wedemeyer
 	email = mail@jakob-wedemyer.de
 [core]
 	editor = vim

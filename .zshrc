@@ -82,6 +82,7 @@ alias ll="ls -lF"
 alias la="ls -aF"
 alias gits="git status"
 alias uniscp="scp -r $1 uni:/afs/informatik.uni-goettingen.de/user/j/jakob.wedemeyer/Documents/$2"
+alias python="python3"
 
 cd() { builtin cd "$@"; print -D $PWD; la }
 
@@ -121,3 +122,6 @@ export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
