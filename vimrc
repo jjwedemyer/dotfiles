@@ -27,6 +27,12 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set mouse-=a
 set backspace=indent,eol,start
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
@@ -57,7 +63,7 @@ let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
 
-colorscheme gruvbox
+colorscheme smyck
 set background=dark
 
 filetype plugin on
