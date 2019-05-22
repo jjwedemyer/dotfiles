@@ -6,7 +6,6 @@ antigen use oh-my-zsh
 
 antigen bundles <<EOF
 	git
-	brew
 	colorize
 	ssh-agent
 	wd
@@ -23,6 +22,7 @@ antigen bundles <<EOF
 
 	alexrochas/zsh-vim-crtl-z
 	rupa/z
+	gretzky/auto-color-ls
 EOF
 
 antigen bundle nojhan/liquidprompt

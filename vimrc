@@ -72,6 +72,12 @@ nnoremap <C-p> :Files .<CR>
 nnoremap ,<space> :call StripTrailingWhitespaces()<CR>
 nnoremap q: :History:<CR>
 
+" NO ARROW KEYS!
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 	autocmd BufNewFile,BufRead *.twig set filetype=html
