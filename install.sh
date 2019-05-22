@@ -7,8 +7,15 @@ if [ un = 'Darwin' ]; then
 	if [ ! -x brew ]; then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		brew install zsh
-		gem install colorls
 	fi
+
+# install colorls for nice listings
+	gem install colorls
+
+# link hammerspoon files on macOS
+	ln -s $HOME/.dotfiles/hammerspoon $HOME/.hammerspoon
+
+# set zsh as your main shell
 	if [ -x zsh ]; then
 		sudo -s 'echo /usr/local/bin/zsh >> /etc/shells' && chsh -s /usr/local/bin/zsh
 	fi
