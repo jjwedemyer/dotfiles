@@ -23,6 +23,8 @@ elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
 fi
 
+curl -L git.io/antigen > $HOME/.dotfiles/zsh/antigen.zsh
+
 ln -s $HOME/.dotfiles/zsh $HOME/.zsh
 ln -s $HOME/.dotfiles/vim $HOME/.vim
 ln -s $HOME/.dotfiles/vimrc $HOME/.vimrc
