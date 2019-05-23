@@ -63,7 +63,7 @@ let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
 let $FZF_DEFAULT_COMMAND='ag -g ""'
 
-colorscheme smyck
+colorscheme gruvbox
 set background=dark
 
 filetype plugin on
