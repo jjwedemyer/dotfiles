@@ -12,6 +12,7 @@ git clone repo ~/.dotfiles && cd ~/.dotfiles
 - hammerspoon on macOS
 
 ### TODO:
- - [] create install script
- - [] make install script platform/os agnostic
- - [] make install script install antigen
+ - [ ] create install script
+ - [ ] make install script platform/os agnostic
+ - [ ] make install script install antigen
+ - [ ] make install script run vim and install plugs
