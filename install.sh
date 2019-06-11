@@ -33,4 +33,4 @@ ln -s $HOME/.dotfiles/zshrc $HOME/.zshrc
 ln -s $HOME/.dotfiles/git/gitignore $HOME/.gitignore_global
 ln -s $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
 
-zsh
+zsh && vim +PluginInstall +qall
