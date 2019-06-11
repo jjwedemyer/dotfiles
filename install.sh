@@ -15,15 +15,15 @@ if [ $un = "Darwin" ]; then
 # link hammerspoon files on macOS
 	ln -s $HOME/.dotfiles/hammerspoon $HOME/.hammerspoon
 
-# set zsh as your main shell
-	if [ -x zsh ]; then
-		sudo -s 'echo /usr/local/bin/zsh >> /etc/shells' && chsh -s /usr/local/bin/zsh
-	fi
 elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
 fi
+# set zsh as your main shell
+if [ -x zsh ]; then
+	sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+fi
 
-curl -L git.io/antigen > $HOME/.dotfiles/zsh/antigen.zsh
+curl -L git.io/antigen > "$HOME/.dotfiles/zsh/antigen.zsh"
 
 ln -s $HOME/.dotfiles/zsh $HOME/.zsh
 ln -s $HOME/.dotfiles/vim $HOME/.vim
@@ -32,3 +32,5 @@ ln -s $HOME/.dotfiles/zshrc $HOME/.zshrc
 
 ln -s $HOME/.dotfiles/git/gitignore $HOME/.gitignore_global
 ln -s $HOME/.dotfiles/git/gitconfig $HOME/.gitconfig
+
+zsh
