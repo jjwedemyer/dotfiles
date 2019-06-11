@@ -8,6 +8,7 @@
 *.exe
 *.o
 *.so
+*.zwc
 
 # Packages #
 ############
@@ -32,6 +33,7 @@
 *.sublime-workspace
 *.sublime-project
 *.git-project
+*.code-workspace
 
 # OS generated files #
 ######################
