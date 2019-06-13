@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>.dotfiles by Jakob Wedemeyer</title>
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css'>
+    <style type="text/css" media="screen">
+      html {
+        font-family: hack;
+      }
+      body {
+        width: 90vw;
+        height: 90vh;
+        background: rgb(2,0,36);
+        background: linear-gradient(34deg, rgba(2,0,36,1) 0%, rgba(121,9,49,1) 42%, rgba(255,0,14,1) 100%);
+      }
+
+      h1 {
+        font-size: 2em;
+        font-variant: italic;
+        margin: 0px;
+        margin-block: 0;
+        color: Black;
+      }
+      p{
+        color: lightgrey;
+      }
+      
+      .centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+    #content_header h1{
+      left: 50%;
+      text-align: center;
+      max-width: fit-content;
+      padding: 10px;
+      border-radius: 10px;
+      background: DimGray;
+    }
+    </style>
+	</head>
+	<body>
+    <div id="wrapper">
+      <div id="content_header" class="centered">
+          <h1>.dotfiles</h1>
+          <p>Hi, these are my dotfiles, feel free to have a look at my <a href="https://github.com/jjwedemyer/dotfiles">github repo</a> and contribute </p>
+          <code>curl -L https://raw.githubusercontent.com/jjwedemyer/dotfiles/master/install.sh</code>
+      </div>
+    </div>
+	</body>
+</html>
