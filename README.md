@@ -9,7 +9,7 @@ git clone repo ~/.dotfiles && cd ~/.dotfiles
 ### dependencies
 - zsh, git
 - zsh antigen
-- hammerspoon on macOS
+- [hammerspoon](https://www.hammerspoon.org/) on macOS (needs to be installed manually for now)
 
 ### TODO:
  have a look at the issues and feel free to create an issue if you have suggestions and improvements to the code
