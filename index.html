@@ -4,7 +4,7 @@
     <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css'>
     <style type="text/css" media="screen">
       html {
-        font-family: hack;
+        font-family: Hack;
       }
       body {
         width: 90vw;
@@ -23,6 +23,16 @@
       p{
         color: lightgrey;
       }
+      a{ color: orange; }
+      code {
+        font-size: 1.5em;
+        color: lightgrey;
+        background: dimgrey;
+        padding: 5px;
+      }
+      code:hover {
+        cursor: pointer;
+      }
       
       .centered {
   position: fixed;
@@ -40,6 +50,17 @@
       background: DimGray;
     }
     </style>
+    <script type="text/javascript" charset="utf-8">
+      const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+      };
+      document.querySelector('code')[0].addEventListener("click", (e)=> copyToClipboard(e.target.innerHTML))
+    </script>
 	</head>
 	<body>
     <div id="wrapper">
