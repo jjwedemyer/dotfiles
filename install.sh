@@ -4,13 +4,16 @@
 un=$(uname)
 if [ $un = "Darwin" ]; then
 	xcode-select --install
-	if [ ! -x brew ]; then
+	if ! hash brew 2>/dev/null; then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-		brew install zsh
 	fi
 
+	brew install zsh
+
 # install colorls for nice listings
-	gem install colorls
+	if hash gem 2>/dev/null; then
+		gem install colorls
+	fi
 
 # link hammerspoon files on macOS
 	ln -s $HOME/.dotfiles/hammerspoon $HOME/.hammerspoon
@@ -19,7 +22,7 @@ elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
 fi
 # set zsh as your main shell
-if [ -x zsh ]; then
+if hash zsh 2>/dev/null; then
 	sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 fi
 
