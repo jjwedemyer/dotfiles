@@ -1,5 +1,3 @@
-# source antigen.zsh
-
 source $HOME/.dotfiles/zsh/antigen.zsh
 
 antigen use oh-my-zsh
