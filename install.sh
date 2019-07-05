@@ -35,9 +35,9 @@ if [ $un = "Darwin" ]; then
 	brew install zsh
 
 # install colorls for nice listings
-	if hash gem 2>/dev/null; then
-		gem install colorls
-	fi
+#	if hash gem 2>/dev/null; then
+#		gem install colorls
+#	fi
 
 # link hammerspoon files on macOS
 	link_conf hammerspoon

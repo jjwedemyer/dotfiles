@@ -20,7 +20,6 @@ antigen bundles <<EOF
 
 	alexrochas/zsh-vim-crtl-z
 	rupa/z
-	gretzky/auto-color-ls
 EOF
 
 antigen bundle nojhan/liquidprompt
