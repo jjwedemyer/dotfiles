@@ -40,7 +40,7 @@ if [ $un = "Darwin" ]; then
 #	fi
 
 # link hammerspoon files on macOS
-	link_conf hammerspoon
+#	link_conf hammerspoon
 
 elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
@@ -57,7 +57,6 @@ link_conf vim
 link_conf vimrc
 link_conf zshrc
 
-link_conf git/gitignore
-link_conf git/gitconfig
+link_conf git
 
 zsh && vim +PluginInstall +qall
