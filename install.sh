@@ -23,6 +23,9 @@ if hash git 2>/dev/null; then
 	fi
 fi
 
+# clone the repo, assuming you have setup you keys
+git clone git@github.com:jjwedemyer/dotfiles.git
+
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
 	if [ $(xcode-select -p 1>/dev/null;echo $?) -gt 0 ]; then
