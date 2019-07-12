@@ -13,7 +13,7 @@ version () { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }';
 if hash git 2>/dev/null; then
 	git_version=$(git --version | cut -f 3 -d" ")
 	
-	if [ $(version ${git_version}) -lt $(version "1.8.0") ]; then
+	if [ $(version "${git_version}") -lt $(version "1.8.0") ]; then
 		cat  <<-EOL 
 			ERROR: your git install is earlier than version 1.8.0 which means antigen isn't going to work here
 			it also means your system is fucking old... you should prolly upgrade at least your utilities.
@@ -24,7 +24,7 @@ if hash git 2>/dev/null; then
 fi
 
 # clone the repo, assuming you have setup you keys
-git clone git@github.com:jjwedemyer/dotfiles.git
+git clone git@github.com:jjwedemyer/dotfiles.git "${dot_dir}"
 
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
