@@ -24,7 +24,7 @@ if hash git 2>/dev/null; then
 fi
 
 # clone the repo, assuming you have setup you keys
-git clone git@github.com:jjwedemyer/dotfiles.git "${dot_dir}"
+git clone https://github.com/jjwedemyer/dotfiles.git "${dot_dir}"
 
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
