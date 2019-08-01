@@ -1,11 +1,11 @@
 # get script dir
 DOT_DIR=${0:A:h}
+echo $DOT_DIR
 
-
-source $DOT_DIR/zsh/exports.zsh
-source $DOT_DIR/zsh/antigen_conf.zsh
-source $DOT_DIR/zsh/aliases.zsh
-source $DOT_DIR/zsh/functions.zsh
+source $DOT_DIR/.zsh/exports.zsh
+source $DOT_DIR/.zsh/antigen_conf.zsh
+source $DOT_DIR/.zsh/aliases.zsh
+source $DOT_DIR/.zsh/functions.zsh
 
 
 autoload zmv
