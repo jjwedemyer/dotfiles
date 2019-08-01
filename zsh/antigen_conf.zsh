@@ -1,4 +1,7 @@
-source $HOME/.dotfiles/zsh/antigen.zsh
+# get script dir
+SCRIPT_DIR=${0:A:h}
+
+source $SCRIPT_DIR/antigen.zsh
 
 antigen use oh-my-zsh
 
@@ -7,7 +10,6 @@ antigen bundles <<EOF
 	colorize
 	ssh-agent
 	wd
-	command-not-found
 	tmux
 	common-aliases
 	fzf
