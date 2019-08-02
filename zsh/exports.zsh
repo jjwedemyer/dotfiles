@@ -22,6 +22,7 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+if [[ -x jenv ]]; then
+	export PATH="$HOME/.jenv/bin:$PATH"
+	eval "$(jenv init -)"
+fi;
