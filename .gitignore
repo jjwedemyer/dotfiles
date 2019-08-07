@@ -1,6 +1,6 @@
 # zsh installed files
 *.zwc
-zsh/antigen.sh
+zsh/antigen.zsh
 
 # vim installed files
 vim/autoload
