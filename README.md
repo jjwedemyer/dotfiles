@@ -2,7 +2,7 @@
 
 ### Installation
 ```sh
-git clone repo ~/.dotfiles && cd ~/.dotfiles
+git clone git@github.com:jjwedemyer/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
 ./install.sh
 ```
 
