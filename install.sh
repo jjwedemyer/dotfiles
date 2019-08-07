@@ -5,6 +5,9 @@ dot_dir=${1:-"$HOME/.dotfiles"}
 un=$(uname)
 
 link_conf () {
+	if [ -f ${HOME}/.${1} ]; then
+		mv ${HOME}/.${1} ${HOME}/.${1}_old
+	fi
 	ln -s ${dot_dir}/${1} ${HOME}/.${1}
 }
 
@@ -25,6 +28,7 @@ fi
 
 # clone the repo, assuming you have setup you keys
 git clone https://github.com/jjwedemyer/dotfiles.git "${dot_dir}"
+echo ${dot_dir} > $HOME/.DOT_DIR
 
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
