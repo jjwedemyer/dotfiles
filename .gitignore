@@ -1,1 +1,8 @@
+# zsh installed files
 *.zwc
+zsh/antigen.zsh
+
+# vim installed files
+vim/autoload
+vim/plugged
+vim/.netrwhist
