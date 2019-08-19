@@ -1,10 +1,4 @@
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='subl'
-fi
-
+export EDITOR='vim'
 export CHEATCOLORS=true
 
 
