@@ -20,6 +20,10 @@ alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g P="2>&1| pygmentize -l pytb"
 
+if [ $(uname) = 'Darwin' ]; then
+	alias -g COPY="| pbcopy"
+fi
+
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
 alias fd='find . -type d -name'
