@@ -61,7 +61,7 @@ let g:netrw_browse_split=4
 let g:netrw_winsize=25
 let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
-let $FZF_DEFAULT_COMMAND='ag -g ""'
+let $FZF_DEFAULT_COMMAND='rg -e ""'
 
 colorscheme gruvbox
 set background=dark
