@@ -8,6 +8,7 @@ source $DOT_DIR/zsh/antigen_conf.zsh
 source $DOT_DIR/zsh/aliases.zsh
 source $DOT_DIR/zsh/functions.zsh
 
+ssh-add -A
 
 autoload zmv
 
