@@ -7,6 +7,8 @@ export PATH="/usr/local/sbin:$PATH"
 # Cargo bin
 export PATH="$HOME/.cargo/bin:$PATH"
 
+#making gpg work
+export GPG_TTY=$(tty)
 
 # term colors
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
