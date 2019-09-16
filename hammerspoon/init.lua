@@ -1,5 +1,6 @@
 hs.window.animationDuration = 0
 hs.window.setShadows(false)
+hs.application.enableSpotlightForNameSearches(true)
 
 hs.loadSpoon("WindowHalfsAndThirds")
 
