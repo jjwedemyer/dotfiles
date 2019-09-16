@@ -1,5 +1,5 @@
 export EDITOR='vim'
-export CHEATCOLORS=true
+#export CHEATCOLORS=true
 
 
 export PATH="/usr/local/sbin:$PATH"
@@ -12,6 +12,16 @@ export GPG_TTY=$(tty)
 
 # term colors
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+# Locale Settings
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL="en_US.UTF-8"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Add Visual Studio Code (code)

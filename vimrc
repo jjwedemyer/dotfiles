@@ -22,8 +22,8 @@ set cursorline
 set showmatch
 set hlsearch
 set laststatus=0
-set statusline+=%=
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%=
+"set statusline+=%{SyntasticStatuslineFlag()}
 set mouse-=a
 set backspace=indent,eol,start
 
@@ -65,8 +65,10 @@ let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
 let $FZF_DEFAULT_COMMAND='rg -e ""'
 
+let g:airline_powerline_fonts = 1
 colorscheme gruvbox
 set background=dark
+set t_Co=256 " fixing tmux bold font
 
 filetype plugin on
 "filetype plugin indent off
