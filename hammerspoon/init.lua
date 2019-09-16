@@ -30,14 +30,21 @@ local layout_code = {
 	}
   }
 
+hs.hotkey.bind(mash,"1", function()
+	local win = hs.window.focusedWindow()
+	win:moveToUnit({x=0,y=0, w=0.6, h=1})
+end)
+
+hs.hotkey.bind(mash,"2", function()
+	local win = hs.window.focusedWindow()
+	win:moveToUnit({x=0.6,y=0, w=0.4, h=1})
+end)
 
 hs.hotkey.bind(mash,"W", function()
 	local win = hs.window.focusedWindow()
   	local f = win:frame()
-	
+	local app = win:application()
+	print(app:title() .. " " .. win:title())	
 	
 end)
 
-hs.hotkey.bind(mash_apps, "L", function()
-	local screen = "LG Ultrawide"
-end)
