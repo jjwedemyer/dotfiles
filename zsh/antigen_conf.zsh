@@ -15,6 +15,7 @@ antigen bundles <<EOF
 	fzf
 	z
 	nmap
+	sublime
 
 	zsh-users/zsh-autosuggestions
 	zsh-users/zsh-completions
