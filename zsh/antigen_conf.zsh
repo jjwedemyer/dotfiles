@@ -11,10 +11,11 @@ antigen bundles <<EOF
 	ssh-agent
 	wd
 	tmux
-	common-aliases
 	fzf
 	z
 	nmap
+	ripgrep
+	sublime
 
 	zsh-users/zsh-autosuggestions
 	zsh-users/zsh-completions
