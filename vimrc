@@ -33,6 +33,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+let g:deoplete#enable_at_startup = 1
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
@@ -43,6 +44,11 @@ Plug 'valloric/MatchTagAlways'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 call plug#end()
 
 if has("nvim")
