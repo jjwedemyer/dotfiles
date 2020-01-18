@@ -16,6 +16,7 @@ antigen bundles <<EOF
 	nmap
 	ripgrep
 	sublime
+	cargo
 
 	zsh-users/zsh-autosuggestions
 	zsh-users/zsh-completions
