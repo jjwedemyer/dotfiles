@@ -4,6 +4,8 @@ alias ls="exa"
 alias ll="exa -l"
 alias la="exa -al"
 
+alias vim="nvim"
+
 alias cat="bat"
 
 alias t='tail -f'

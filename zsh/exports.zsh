@@ -14,16 +14,21 @@ export GPG_TTY=$(tty)
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 # Locale Settings
-LANG="en_US.UTF-8"
-LC_COLLATE="en_US.UTF-8"
-LC_CTYPE="en_US.UTF-8"
-LC_MESSAGES="en_US.UTF-8"
-LC_MONETARY="en_US.UTF-8"
-LC_NUMERIC="en_US.UTF-8"
-LC_TIME="en_US.UTF-8"
-LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
+# fuzzy finder written in Go
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fuzzy finder written in Rust
+export SKIM_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .(git|svn)"
+
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh

@@ -18,12 +18,20 @@ antigen bundles <<EOF
 	sublime
 	cargo
 
+	rust
+	cargo
+
+	helm
+	kubectl
+
 	zsh-users/zsh-autosuggestions
 	zsh-users/zsh-completions
 	zsh-users/zsh-syntax-highlighting
 
 	alexrochas/zsh-vim-crtl-z
 	rupa/z
+
+	jenv
 EOF
 
 antigen bundle nojhan/liquidprompt
