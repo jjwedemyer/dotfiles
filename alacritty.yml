@@ -109,7 +109,8 @@ font:
     #   - (Linux) monospace
     #   - (Windows) Consolas
     #family: Source Code Pro for Powerline
-    family: Hack Nerd Font
+    #family: Hack Nerd Font
+    family: InputMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -122,7 +123,8 @@ font:
     # value specified for the normal font.
     #family: monospace
     #family: Fira Mono for Powerline
-    family: Hack Nerd Font
+    #family: Hack Nerd Font
+    family: InputMono Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
