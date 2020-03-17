@@ -9,6 +9,7 @@ spoon.WindowHalfsAndThirds:bindHotkeys(spoon.WindowHalfsAndThirds.defaultHotkeys
 -- keybind shortcuts
 local mash = {"cmd", "alt", "ctrl"}
 local mash_apps = {"cmd", "alt"}
+local mash_window = {"cmd", "shift"}
 
 local lgUltrawideWork = "LG ULTRAWIDE"
 local laptopScreen = "Color LCD"
@@ -25,6 +26,16 @@ local layout_code_work = {
         laptopScreen, hs.layout.maximized, nil, nil
     }
 }
+
+hs.hotkey.bind(mash_window, "1", function()
+    local win = hs.window.focusedWindow()
+    win:moveToUnit({x = 0.02, y = 0.02, w = 0.96, h = 0.96})
+end)
+
+hs.hotkey.bind(mash_window, "2", function()
+    local win = hs.window.focusedWindow()
+    win:moveToUnit({x = 0.1, y = 0.02, w = 0.8, h = 0.96})
+end)
 
 hs.hotkey.bind(mash_apps, "1", function() hs.layout.apply(layout_code_work) end)
 
