@@ -63,8 +63,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 if has("nvim")
@@ -81,7 +80,7 @@ let g:syntastic_check_on_wq=0
 let g:syntastic_check_on_open=1
 let g:netrw_liststyle=3
 let g:netrw_banner=0
-let g:netrw_browse_split=4
+let g:netrw_browse_split=3
 let g:netrw_winsize=25
 let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
