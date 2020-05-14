@@ -13,6 +13,9 @@ export GPG_TTY=$(tty)
 # term colors
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
+# History
+export HISTORY_IGNORE="ls:ll:la:ps:pwd:cd"
+
 # Locale Settings
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
@@ -23,11 +26,17 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# Kubectl config
+export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/config-serenity"
+
 # fuzzy finder written in Go
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fuzzy finder written in Rust
-export SKIM_DEFAULT_COMMAND="fd --type file --follow --hidden --exclude .(git|svn)"
+export SKIM_DEFAULT_COMMAND="fd --type file --follow --hidden"
+
+# FZF
+export FZF_DEFAULT_COMMAND="fd --type file --follow --hidden"
 
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
