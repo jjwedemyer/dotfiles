@@ -2,10 +2,10 @@ scriptencoding utf-8
 set encoding=utf-8
 
 set tabstop=2
-set shiftwidth=2
 set softtabstop=2
+set shiftwidth=2
 set autoindent
-set noexpandtab
+set expandtab
 set ignorecase
 set smartcase
 set number
@@ -84,7 +84,8 @@ let g:netrw_browse_split=3
 let g:netrw_winsize=25
 let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
-let $FZF_DEFAULT_COMMAND='rg -e ""'
+"let $FZF_DEFAULT_COMMAND='rg -e ""'
+let FZF_DEFAULT_COMMAND="fd --type file --follow --hidden"
 
 let g:airline_powerline_fonts = 1
 colorscheme gruvbox
@@ -102,6 +103,11 @@ nnoremap <C-b> :Buffers<CR>
 nnoremap <C-p> :Files .<CR>
 nnoremap <Leader><space> :call StripTrailingWhitespaces()<CR>
 nnoremap q: :History:<CR>
+
+nmap <Leader>h <C-W>5|
+nmap <Leader>l <C-W>|
+nmap <Leader>j <C-W>5_
+nmap <Leader>k <C-W>_
 
 
 if has("autocmd")
