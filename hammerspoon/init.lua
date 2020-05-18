@@ -13,6 +13,9 @@ local mash_apps = {"cmd", "alt"}
 local lgUltrawideWork = "LG ULTRAWIDE"
 local laptopScreen = "Color LCD"
 
+local asus4k = "ASUS VP28U"
+local acer = "Acer H233H"
+
 local layout_code_work = {
     {
         "Alacritty", nil, lgUltrawideWork, {x = 0.6, y = 0, w = 0.4, h = 1},
@@ -26,7 +29,15 @@ local layout_code_work = {
     }
 }
 
+local layout_code_home = {
+    {
+        "Alacritty", nil, acer, {x = 0.6, y = 0, w = 0.4, h = 1},
+        nil, nil
+    }
+}
+
 hs.hotkey.bind(mash_apps, "1", function() hs.layout.apply(layout_code_work) end)
+hs.hotkey.bind(mash_apps, "2", function() hs.layout.apply(layout_code_home) end)
 
 hs.hotkey.bind(mash, "1", function()
     local win = hs.window.focusedWindow()
