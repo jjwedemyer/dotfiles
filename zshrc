@@ -12,5 +12,6 @@ ssh-add -A
 
 autoload zmv
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey ^O forward-word

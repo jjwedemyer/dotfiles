@@ -28,7 +28,7 @@ fi
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
-alias fd='find . -type d -name'
+alias ffd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # Make zsh know about hosts already accessed by SSH
