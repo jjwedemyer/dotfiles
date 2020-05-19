@@ -31,7 +31,6 @@ antigen bundles <<EOF
 	alexrochas/zsh-vim-crtl-z
 	rupa/z
 
-	jenv
 EOF
 
 antigen bundle nojhan/liquidprompt

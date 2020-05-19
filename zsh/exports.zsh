@@ -1,7 +1,6 @@
 export EDITOR='nvim'
 #export CHEATCOLORS=true
 
-
 export PATH="/usr/local/sbin:$PATH"
 
 # Cargo bin
@@ -29,9 +28,6 @@ export LC_ALL="en_US.UTF-8"
 # Kubectl config
 export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/config-serenity"
 
-# fuzzy finder written in Go
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # fuzzy finder written in Rust
 export SKIM_DEFAULT_COMMAND="fd --type file --follow --hidden"
 
@@ -43,6 +39,7 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 if [[ -x jenv ]]; then
+  antigen bundle jenv
 	export PATH="$HOME/.jenv/bin:$PATH"
 	eval "$(jenv init -)"
 fi;
