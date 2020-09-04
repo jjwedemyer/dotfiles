@@ -1,0 +1,16 @@
+# This script is supposed to setup your macOS machine.
+
+if [ $(xcode-select -p 1>/dev/null;echo $?) -gt 0 ]; then
+  xcode-select --install
+fi
+if ! hash brew 2>/dev/null; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+brew bundle
+
+# TODO: # Make brew install all pkgs in the Brewfile.
+
+# link hammerspoon files on macOS
+link_conf hammerspoon
+
