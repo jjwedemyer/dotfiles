@@ -60,6 +60,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'elzr/vim-json'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
 call plug#end()
 
 if has("nvim")
