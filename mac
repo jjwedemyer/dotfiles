@@ -7,9 +7,12 @@ if ! hash brew 2>/dev/null; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+#defaults write com.apple.screencapture location /path/to/screenshots/ && killall SystemUIServer
+
+# Make brew install all pkgs in the Brewfile.
 brew bundle
 
-# TODO: # Make brew install all pkgs in the Brewfile.
 
 # link hammerspoon files on macOS
 link_conf hammerspoon
