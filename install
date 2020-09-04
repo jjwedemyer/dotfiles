@@ -1,4 +1,3 @@
-#!/bin/bash
 # this script accepts a parameter for the homedirectory of the dotfiles if that is not set,
 # it will automatically set it to $HOME/.dotfiles
 dot_dir=${1:-"$HOME/.dotfiles"}
@@ -32,23 +31,6 @@ echo ${dot_dir} > $HOME/.DOT_DIR
 
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
-	if [ $(xcode-select -p 1>/dev/null;echo $?) -gt 0 ]; then
-		xcode-select --install
-	fi
-	if ! hash brew 2>/dev/null; then
-		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	fi
-
-	brew install zsh
-
-# install colorls for nice listings
-#	if hash gem 2>/dev/null; then
-#		gem install colorls
-#	fi
-
-# link hammerspoon files on macOS
-#	link_conf hammerspoon
-
 elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
 fi
@@ -66,4 +48,4 @@ link_conf zshrc
 
 link_conf git
 
-zsh && vim +PluginInstall +qall
+zsh && vim +PlugInstall +qall
