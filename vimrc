@@ -61,6 +61,7 @@ Plug 'elzr/vim-json'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 if has("nvim")
