@@ -6,3 +6,14 @@ zsh/antigen.zsh
 vim/autoload
 vim/plugged
 vim/.netrwhist
+tmux/plugins/tmux-continuum/
+tmux/plugins/tmux-resurrect/
+tmux/plugins/tmux-sensible/
+tmux/resurrect/last
+tmux/resurrect/tmux_resurrect_20200818T084050.txt
+tmux/resurrect/tmux_resurrect_20200818T084119.txt
+tmux/resurrect/tmux_resurrect_20200827T122212.txt
+tmux/resurrect/tmux_resurrect_20200827T122300.txt
+tmux/resurrect/tmux_resurrect_20200827T143751.txt
+tmux/resurrect/tmux_resurrect_20200827T165253.txt
+tmux/tmuxline
