@@ -31,6 +31,7 @@ echo ${dot_dir} > $HOME/.DOT_DIR
 
 # get the packagemanager for the system
 if [ $un = "Darwin" ]; then
+  eval mac
 elif [ $un = "Linux" ]; then
 	echo "For now I assume you have zsh installed already"
 fi
