@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[include]
+  path = ~/.git/user_soerensen
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[filesystem "AdoptOpenJDK|12.0.2|/dev/disk1s1"]
+	timestampResolution = 20000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[includeIf "gitdir:~/Code/cscsmw/"]
+  path = ~/.git/user_eon
