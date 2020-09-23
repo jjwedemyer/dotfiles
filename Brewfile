@@ -9,12 +9,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/dupes"
-tap "homebrew/nginx"
 tap "homebrew/services"
-tap "homebrew/versions"
-tap "homebrew/x11"
-tap "prisma/prisma"
 tap "px4/px4"
 
 # these are pkgs i use
