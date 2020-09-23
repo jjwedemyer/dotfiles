@@ -4,25 +4,25 @@ dot_dir=${1:-"$HOME/.dotfiles"}
 un=$(uname)
 
 link_conf () {
-	if [ -f ${HOME}/.${1} ]; then
-		mv ${HOME}/.${1} ${HOME}/.${1}_old
-	fi
-	ln -s ${dot_dir}/${1} ${HOME}/.${1}
+  if [ -f ${HOME}/.${1} ]; then
+    mv ${HOME}/.${1} ${HOME}/.${1}_old
+  fi
+  ln -s ${dot_dir}/${1} ${HOME}/.${1}
 }
 
 version () { echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; }
 
 if hash git 2>/dev/null; then
-	git_version=$(git --version | cut -f 3 -d" ")
-	
-	if [ $(version "${git_version}") -lt $(version "1.8.0") ]; then
-		cat  <<-EOL 
-			ERROR: your git install is earlier than version 1.8.0 which means antigen isn't going to work here
-			it also means your system is fucking old... you should prolly upgrade at least your utilities.
-			Please install git later than version 1.8.0"
-		EOL
-		exit 1;
-	fi
+  git_version=$(git --version | cut -f 3 -d" ")
+  
+  if [ $(version "${git_version}") -lt $(version "1.8.0") ]; then
+    cat  <<-EOL 
+      ERROR: your git install is earlier than version 1.8.0 which means antigen isn't going to work here
+      it also means your system is fucking old... you should prolly upgrade at least your utilities.
+      Please install git later than version 1.8.0"
+    EOL
+    exit 1;
+  fi
 fi
 
 if hash ssh-keygen 2>/dev/null; then
@@ -31,9 +31,16 @@ if hash ssh-keygen 2>/dev/null; then
     read comment
     ssh-keygen -t ed25519 -c "${comment}" -f $HOME/.ssh/id_ed25519
   fi
-  echo "This is your ssh public key."
-  cat $HOME/.ssh/id_ed25519.pub | pbcopy
+  echo "This is your ssh public key. I will take the opportunity and copy it to your clipboard."
+  cat $HOME/.ssh/id_ed25519.pub | toclipboard
   cat $HOME/.ssh/id_ed25519.pub
+  while true; do
+    read -p "Please import this key into Github! Please respond when you did so!" yn
+    case $yn in
+      [yY]* ) break;;
+      [nN]* ) exit;;
+    esac
+  done
 fi
 
 # clone the repo, assuming you have setup you keys
@@ -44,11 +51,11 @@ echo ${dot_dir} > $HOME/.DOT_DIR
 if [ $un = "Darwin" ]; then
   eval mac
 elif [ $un = "Linux" ]; then
-	echo "For now I assume you have zsh installed already"
+  echo "For now I assume you have zsh installed already"
 fi
 # set zsh as your main shell
 if hash zsh 2>/dev/null; then
-	sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+  sudo -s "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 fi
 
 curl -L git.io/antigen > "${dot_dir}/zsh/antigen.zsh"
