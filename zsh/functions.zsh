@@ -1,4 +1,15 @@
-# cd() { builtin cd "$@"; print -D $PWD; la }
+# This function loads exports and other things based on the path
+# you're in
+# TODO: Expand this to search for each parent as well and load files from there too
+# TODO: make it unset when you leave this directory or it's children.
+cd() {
+  builtin cd "$@"
+  if [ -f $PWD/.exports ]
+  then
+    echo "loading ${PWD}/.exports"
+    source $PWD/.exports
+  fi
+}
 
 reload_config() { source $HOME/.zshrc }
 
