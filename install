@@ -68,3 +68,4 @@ link_conf zshrc
 link_conf git
 
 zsh && vim +PlugInstall +qall
+
