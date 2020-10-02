@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+cargo_install () {
+  cargo install ${1}
+}
+
+
+cat <<EOF | xargs -n | cargo_install
+ripgrep
+bat
+EOF
