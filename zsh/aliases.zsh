@@ -10,6 +10,9 @@ alias cat="bat"
 
 alias t='tail -f'
 
+# Pretty print the path
+alias path='echo $PATH | tr -s ":" "\n"'
+
 # Command line head / tail shortcuts
 alias -g H='| head'
 alias -g T='| tail'
