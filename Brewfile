@@ -26,7 +26,7 @@ brew "cmake"
 brew "bat"
 brew "curl"
 brew "exa" # ls replacement.
-brew "fzf" # fuzzy finder
+brew "fd" # Find implemented in Rust
 brew "coreutils"
 brew "jq"
 brew "wget"
