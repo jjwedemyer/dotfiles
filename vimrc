@@ -62,6 +62,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'vimwiki/vimwiki'
+Plug 'aklt/plantuml-syntax'
+Plug 'scrooloose/vim-slumlord'
 call plug#end()
 
 if has("nvim")
