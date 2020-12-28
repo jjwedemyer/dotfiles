@@ -8,6 +8,10 @@ source $DOT_DIR/zsh/exports.zsh
 source $DOT_DIR/zsh/aliases.zsh
 source $DOT_DIR/zsh/functions.zsh
 
+setopt hist_ignore_dups
+
+compdef g=git
+
 if [ $(uname) = "Darwin" ]; then
   ssh-add -A
 fi
