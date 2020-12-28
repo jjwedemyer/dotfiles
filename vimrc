@@ -8,6 +8,7 @@ set autoindent
 set expandtab
 set ignorecase
 set smartcase
+set relativenumber
 set number
 set list
 set listchars=tab:\_\_,eol:¬,trail:·
@@ -29,6 +30,9 @@ set backspace=indent,eol,start
 " Give more space for displaying messages.
 set cmdheight=2
 
+" show a vertical line after x characters
+set colorcolumn=80
+
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
@@ -47,23 +51,42 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
+" LSP Client for nvim
+Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/lsp_extensions.nvim'
+
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" find fuzzy faaaaaaaast
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
+" Git things
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'stsewd/fzf-checkout.vim'
+" Code Script setting
+Plug 'godlygeek/tabular'
 Plug 'valloric/MatchTagAlways'
-Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-surround'
+Plug 'sheerun/vim-polyglot' " wrapper pkg for many (5xx) languages plugins
+" Ctags
+Plug 'preservim/tagbar'
+Plug 'lvht/tagbar-markdown'
+" Vimwiki and Components
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar-vim'
+" Style plugins
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
-Plug 'elzr/vim-json'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular'
-Plug 'vimwiki/vimwiki'
-Plug 'aklt/plantuml-syntax'
-Plug 'scrooloose/vim-slumlord'
+" Utilities
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 call plug#end()
 
 if has("nvim")
@@ -84,7 +107,6 @@ let g:netrw_browse_split=3
 let g:netrw_winsize=25
 let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
-"let $FZF_DEFAULT_COMMAND='rg -e ""'
 let FZF_DEFAULT_COMMAND="fd --type file --follow --hidden"
 
 let g:airline_powerline_fonts = 1
@@ -97,11 +119,14 @@ filetype plugin on
 
 let mapleader=","
 
+" buffer switching
 nnoremap <C-h> :bprev<CR>
 nnoremap <C-l> :bnext<CR>
+" fzf keybinds
 nnoremap <C-b> :Buffers<CR>
 nnoremap <C-p> :Files .<CR>
-nnoremap <Leader><space> :call StripTrailingWhitespaces()<CR>
+nnoremap <Leader><space> :Rg<CR>
+nnoremap <Leader><M-Space> :GFiles<CR>
 nnoremap q: :History:<CR>
 
 nmap <Leader>h <C-W>5|
@@ -109,11 +134,34 @@ nmap <Leader>l <C-W>|
 nmap <Leader>j <C-W>5_
 nmap <Leader>k <C-W>_
 
+nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>vsh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>vrr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>vrn :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
+nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <Leader>T :lua require'lsp_extensions'.inlay_hints()
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 
 if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 	autocmd BufNewFile,BufRead *.twig set filetype=html
 	autocmd BufEnter * :syntax sync fromstart
+  au BufRead,BufNewFile *.md setlocal textwidth=80
 endif
 
 function! StripTrailingWhitespaces()
@@ -125,129 +173,89 @@ function! StripTrailingWhitespaces()
 	call cursor(l, c)
 endfunction
 
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+lua require'nvim_lsp'.jdtls.setup{on_attach=require'completion'.on_attach}
+lua require'nvim_lsp'.jsonls.setup{on_attach=require'completion'.on_attach}
+lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
+lua require'nvim_lsp'.rls.setup{on_attach=require'completion'.on_attach}
 
 let g:vimwiki_list = [{'path': '~/Documents/private_notes',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_dir_link = 'index'
+
+let g:tagbar_type_vimwiki = {
+          \   'ctagstype':'vimwiki'
+          \ , 'kinds':['h:header']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{'h':'header'}
+          \ , 'sort':0
+          \ , 'ctagsbin':'/Users/jakob/Code/priv/utils/vwtags.py'
+          \ , 'ctagsargs': 'markdown'
+          \ }
 
 vmap > >gv
 vmap < <gv
+
+let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
+let g:tagbar_type_rust = {
+  \ 'ctagsbin' : '/path/to/your/universal/ctags',
+  \ 'ctagstype' : 'rust',
+  \ 'kinds' : [
+      \ 'n:modules',
+      \ 's:structures:1',
+      \ 'i:interfaces',
+      \ 'c:implementations',
+      \ 'f:functions:1',
+      \ 'g:enumerations:1',
+      \ 't:type aliases:1:0',
+      \ 'v:constants:1:0',
+      \ 'M:macros:1',
+      \ 'm:fields:1:0',
+      \ 'e:enum variants:1:0',
+      \ 'P:methods:1',
+  \ ],
+  \ 'sro': '::',
+  \ 'kind2scope' : {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+      \ 'f': 'function',
+      \ 'g': 'enum',
+      \ 't': 'typedef',
+      \ 'v': 'variable',
+      \ 'M': 'macro',
+      \ 'm': 'field',
+      \ 'e': 'enumerator',
+      \ 'P': 'method',
+  \ },
+\ }
+
+let g:tagbar_type_bib = {
+    \ 'ctagstype' : 'bib',
+    \ 'kinds'     : [
+        \ 'a:Articles',
+        \ 'b:Books',
+        \ 'L:Booklets',
+        \ 'c:Conferences',
+        \ 'B:Inbook',
+        \ 'C:Incollection',
+        \ 'P:Inproceedings',
+        \ 'm:Manuals',
+        \ 'T:Masterstheses',
+        \ 'M:Misc',
+        \ 't:Phdtheses',
+        \ 'p:Proceedings',
+        \ 'r:Techreports',
+        \ 'u:Unpublished',
+    \ ]
+\ }
