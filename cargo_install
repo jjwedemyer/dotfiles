@@ -8,4 +8,5 @@ cargo_install () {
 cat <<EOF | xargs -n | cargo_install
 ripgrep
 bat
+git-quickfix
 EOF
