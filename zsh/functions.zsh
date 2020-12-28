@@ -39,6 +39,7 @@ g() {
     git status
   fi
 }
+compdef g=git
 
 # update dotfiles
 update_dots() { (cd $HOME/.dotfiles; git fetch master)}
