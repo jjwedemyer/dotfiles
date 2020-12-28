@@ -13,7 +13,9 @@ export GPG_TTY=$(tty)
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 # History
-export HISTORY_IGNORE="ls:ll:la:ps:pwd:cd"
+export HISTORY_IGNORE="(ls|ll|la|ps|pwd|cd)"
+# only use history and completion for the suggest
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Locale Settings
 export LANG="en_US.UTF-8"
@@ -24,6 +26,9 @@ export LC_MONETARY="en_US.UTF-8"
 export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+
+# load bash completions
+autoload -U +X bashcompinit && bashcompinit
 
 # Kubectl config
 export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/config-wwn:$HOME/.kube/config-serenity"
