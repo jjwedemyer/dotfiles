@@ -37,6 +37,8 @@ brew "git-lfs" # large file support
 brew "htop"
 brew "git-standup" # generates list of my commits of the last day
 brew "mercurial" # Facebooks VCS
+brew "cjbassi/gotop/gotop"
+brew "dduan/formulae/tre"
 # Language Tooling
 brew "python", link: false
 brew "ant"
@@ -50,6 +52,7 @@ brew "gcc"
 # Configmanagement
 brew "ansible"
 # Cloud things
+brew "azure-cli"
 brew "awscli"
 brew "docker", link: false
 brew "docker-compose", link: false
@@ -132,9 +135,6 @@ brew "wine"
 brew "yajl"
 brew "yarn"
 brew "zlib"
-brew "cjbassi/gotop/gotop"
-brew "dduan/formulae/tre"
-brew "homebrew/nginx/nginx-full"
 
 # Casks are precompiled apps.
 cask "alacritty"
