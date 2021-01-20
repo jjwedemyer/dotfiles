@@ -1,5 +1,30 @@
 # This script is supposed to setup your macOS machine.
 
+if [[ "$(uname)" != "Darwin" ]]; then
+  echo "Cannot run on platform other than OSX"
+  exit 1
+fi
+
+set -e
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
 if [ $(xcode-select -p 1>/dev/null;echo $?) -gt 0 ]; then
   xcode-select --install
 fi
@@ -10,9 +35,87 @@ fi
 defaults write com.apple.dock workspaces-auto-swoosh -bool NO
 #defaults write com.apple.screencapture location /path/to/screenshots/ && killall SystemUIServer
 
+echo Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+echo Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+echo Finder: show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+echo Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+echo Finder: show path bar
+defaults write com.apple.finder ShowPathBar -bool true
+
+echo Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+echo When performing a search, search the current folder by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+echo Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+echo Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+echo Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+echo Use list view in all Finder windows by default
+echo Four-letter codes for the other view modes: icnv, clmv, Flwv
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+echo Disable the warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+echo Show the ~/Library folder
+chflags nohidden ~/Library
+
+echo Put Dock on the left
+defaults write com.apple.dock orientation -string left
+
+defaults write com.apple.menuextra.clock "DateFormat" 'EEE MMM d  h:mm a'
+
+echo Restarting Finder
+killall Finder
+
 # Make brew install all pkgs in the Brewfile.
 brew bundle
 
+echo Installing applications...
+
+autostart_hidden() {
+  osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/$1.app\", hidden:true}"
+}
+
+run_app() {
+  if test "$(osascript -e "tell application \"System Events\" to (name of processes) contains \"$1\"")" = "false"; then
+    open -a "$1"
+  fi
+}
+
+clear_dock() {
+  defaults write com.apple.dock persistent-apps -array ''
+}
+
+permament_dock() {
+  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+}
+
+allow_control() {
+  APP_ID="$(osascript -e "id of app \"$1\"")"
+
+  if [[ -n "$APP_ID" ]]; then
+    sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access values ('kTCCServiceAccessibility', '$APP_ID', 0, 1, 0, NULL);"
+  fi
+}
 
 # link hammerspoon files on macOS
 link_conf hammerspoon
