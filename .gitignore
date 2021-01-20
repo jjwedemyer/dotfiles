@@ -6,6 +6,14 @@ zsh/antigen.zsh
 vim/autoload
 vim/plugged
 vim/.netrwhist
+config/nvim/autoload
+config/nvim/plugged
+config/nvim/.netrwhist
+.DS_Store
+config/Duplicati/
+config/coc/
+config/configstore/
+config/spotify-tui/
 tmux/plugins/tmux-continuum/
 tmux/plugins/tmux-resurrect/
 tmux/plugins/tmux-sensible/
