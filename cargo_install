@@ -9,4 +9,5 @@ cat <<EOF | xargs -n | cargo_install
 ripgrep
 bat
 git-quickfix
+git-trim
 EOF
