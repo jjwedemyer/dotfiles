@@ -97,18 +97,13 @@ else
 	set ttyfast
 endif
 
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_loc_list_height=4
-let g:syntastic_check_on_wq=0
-let g:syntastic_check_on_open=1
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_browse_split=3
 let g:netrw_winsize=25
 let g:netrw_use_errorwindow=0
 let g:netrw_list_hide='^\.git/$'
-let FZF_DEFAULT_COMMAND="fd --type file --follow --hidden"
+let FZF_DEFAULT_COMMAND="fd --type file --follow"
 
 let g:airline_powerline_fonts = 1
 colorscheme gruvbox
@@ -151,12 +146,6 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" Using lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').help_tags()<cr>
-
 
 if has("autocmd")
 	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -184,10 +173,10 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-lua require'nvim_lsp'.jdtls.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.jsonls.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.rls.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.jdtls.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.jsonls.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.rls.setup{on_attach=require'completion'.on_attach}
 
 let g:vimwiki_list = [{'path': '~/Documents/private_notes',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
